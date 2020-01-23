@@ -1,4 +1,4 @@
-### BASIC SYNTAX
+### EXAMPLE
 ```
 using System;
 
