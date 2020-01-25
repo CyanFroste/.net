@@ -283,4 +283,276 @@ static void Main(string[] args) {
 }
 
 ```
+
+### STRING
+
+```
+string name = "Cyan";
+
+// string property
+int size = name.Length
+```
+String is just an array of characters
+```
+string name = "black"
+Console.WriteLine(char[4]);     // returns 'l'
+```
  
+### STRUCTURES
+```
+struct colors{
+    public string name;
+    public int hexValue;
+
+    // can contain methods
+    public setValues(string name, int value){
+        name = name;
+        hexValue = value;
+    }
+};
+
+```
+
+### ENUMS
+```
+enum Days = { Sun, Mon, tue, Wed, thu, Fri, Sat };
+// each value represents corresponding numbers
+int painfulday = (int)Days.Mon      // 1
+```
+
+## CLASSES
+
+```
+class Jelly {
+    public Jelly(){
+        // Constructor
+    }
+
+    ~Jelly(){
+        // Destructor, Deletes the class at the end of the run
+    }
+}
+```
+
+## INHERITANCE
+```
+class Shape{
+    // members
+}
+interface Dimension{
+    // members
+}
+class Circle : Shape{
+    // inherits members of shape too
+}
+class Square : Shape, Dimension{
+    // inherits a class as well as interface
+}
+```
+C# doesn't support multiple inheritance of classes but do so for interfaces
+
+
+## POLYMORPHISM
+- Overloading
+- Dynamic Polymorphism - Implemented by Abstract classes and virtual functions
+```
+abstract class Shape {
+    public abstract int area();
+}
+   
+class Rectangle : Shape {
+      
+    public override int area () { 
+        // define here
+    }
+}
+```
+
+```
+class Shape {
+    public virtual int area() {
+        // definition
+    }
+}
+class Rectangle: Shape {
+    public Rectangle( ): base( parameter ) { // base is just like a super call in java
+
+    }
+    public override int area () {
+        // new definition here
+    }
+}
+```
+
+### OVERLOADING OPERATORS
+In C# even operators can be overloaded
+```
+class Box {
+    private double length;   
+    private double breadth; 
+    private double height;
+}
+
+public static Box operator+ (Box x, Box y) {
+   Box box = new Box();
+   box.length = x.length + y.length;
+   box.breadth = x.breadth + y.breadth;
+   box.height = x.height + y.height;
+   return box;
+}
+
+// now + adds two box objects
+
+Box a = new Box();
+Box b = new Box();
+Box c = new Box();
+
+Box c = a + b;
+```
+
+### NAMESPACES
+A namespace is designed for providing a way to keep one set of names separate from another. The class names declared in one namespace does not conflict with the same class names declared in another.
+
+### PREPROCESSOR DIRECTIVES
+
+```
+#define PI 
+using System;
+
+namespace PreprocessorCheck {
+   class Program {
+      static void Main(string[] args) {
+        #if (PI)
+            Console.WriteLine("PI is defined");
+        #else
+            Console.WriteLine("PI is not defined");
+        #endif
+            Console.ReadKey();
+        }
+    }
+}
+```
+
+### EXCEPTIONS
+
+- try
+- catch
+- finally
+- throw
+
+
+## PROPERTIES
+```
+class Shape {
+    private int Length;
+
+// Declare a Code property of type int:
+public int Length {
+    get {
+        return length;      // get accessor
+    } set {
+        length = value;     // set accessor
+    }
+}
+```
+
+### INDEXERS
+```
+class IndexedNames {
+    private string[] namelist = new string[size];
+    static public int size = 10;
+    
+    public IndexedNames() {
+        for (int i = 0; i < size; i++)
+        namelist[i] = "N. A.";
+    }
+    public string this[int index] {
+        get {
+            string tmp;
+        
+            if( index >= 0 && index <= size-1 ) {
+                tmp = namelist[index];
+            } else {
+                tmp = "";
+        }        
+        return ( tmp );
+
+        } set {
+            if( index >= 0 && index <= size-1 ) {
+                namelist[index] = value;
+            }
+        }
+    }
+}
+```
+
+### DELEGATES
+Similar to pointers. They are Function pointers.
+```
+namespace DelegateApp {
+
+    delegate void NumberChanger(int n);
+    class Test {
+        static int num = 10;
+        
+        public static void AddNum(int p) {
+            num += p;
+            Console.WriteLine("Named Method: {0}", num);
+        }
+        
+        static void Main(string[] args) {       
+            
+            //instantiating the delegate using the named methods 
+            nc =  new NumberChanger(AddNum);
+            
+            //calling the delegate using the named methods 
+            nc(5);
+        }
+    }
+}
+```
+### EVENTS
+```
+```
+### COLLECTIONS
+- ArrayList
+- Hashtable
+- Stack
+- Queue 
+### GENERICS
+```
+```
+### ANONYMOUS METHODS
+```
+
+namespace DelegateApp {
+
+    delegate void NumberChanger(int n);
+    class Test {
+        static int num = 10;
+        
+        public static void AddNum(int p) {
+            num += p;
+            Console.WriteLine("Named Method: {0}", num);
+        }
+        
+        static void Main(string[] args) {
+
+            //create delegate instances using anonymous method
+
+            NumberChanger nc = delegate(int x) {
+                Console.WriteLine("Anonymous Method: {0}", x);
+            };
+            
+            //calling the delegate using the anonymous method 
+            nc(10);
+            
+            //instantiating the delegate using the named methods 
+            nc =  new NumberChanger(AddNum);
+            
+            //calling the delegate using the named methods 
+            nc(5);
+        }
+    }
+}
+```
